@@ -1,0 +1,98 @@
+import React from 'react';
+import { format, parseISO, isSameDay } from 'date-fns';
+import { useTranslation } from 'react-i18next';
+import { BookingDisplay } from './BookingDisplay';
+import { TimeSlot } from './TimeSlot';
+import { PreviewTimeRange } from './PreviewTimeRange';
+import { DragOverlay } from './DragOverlay';
+import type { Booking, TimeRange } from '@/types';
+import type { DragState } from '@/hooks/useCalendarDrag';
+
+interface TimeColumnProps {
+  day: Date;
+  hours: number[];
+  bookings: Booking[];
+  isInDragRange: (day: Date, hour: number, isFirstHalf: boolean) => boolean;
+  onDragStart: (day: Date, hour: number, isFirstHalf: boolean) => void;
+  onDragMove: (day: Date, clientY: number) => void;
+  onBookingClick: (booking: Booking) => void;
+  previewTimeRange?: TimeRange | null;
+  isDragging?: boolean;
+  dragStart?: DragState | null;
+  dragEnd?: DragState | null;
+  isValidTimeSlot?: boolean;
+}
+
+export function TimeColumn({
+  day,
+  hours,
+  bookings,
+  isInDragRange,
+  onDragStart,
+  onDragMove,
+  onBookingClick,
+  previewTimeRange,
+  isDragging,
+  dragStart,
+  dragEnd,
+  isValidTimeSlot = true
+}: TimeColumnProps) {
+  const { t } = useTranslation();
+
+  const dayBookings = bookings.filter(booking => {
+    const bookingStart = new Date(booking.start_time);
+    return isSameDay(bookingStart, day);
+  });
+
+  return (
+    <div 
+      className="col-span-1 border-l relative" 
+      style={{ borderColor: 'hsl(217 6% 26% / 1)' }}
+      data-day={format(day, 'yyyy-MM-dd')}
+      onMouseMove={(e) => onDragMove(day, e.clientY)}
+    >
+      {hours.map(hour => (
+        <div
+          key={hour}
+          className="relative"
+          style={{ height: window.innerWidth < 640 ? '64px' : '48px' }}
+        >
+          <div 
+            className="absolute inset-x-0 -top-px h-px" 
+            style={{ backgroundColor: 'hsl(217 6% 26% / 1)' }} 
+          />
+          <TimeSlot
+            isInDragRange={isInDragRange(day, hour, true)}
+            onDragStart={() => onDragStart(day, hour, true)}
+            position="top"
+          />
+          <TimeSlot
+            isInDragRange={isInDragRange(day, hour, false)}
+            onDragStart={() => onDragStart(day, hour, false)}
+            position="bottom"
+          />
+        </div>
+      ))}
+
+      {dayBookings.map(booking => (
+        <BookingDisplay
+          key={booking.id}
+          booking={booking}
+          onBookingClick={onBookingClick}
+        />
+      ))}
+
+      {isDragging && dragStart && dragEnd && isSameDay(dragStart.day, day) && (
+        <DragOverlay
+          dragStart={dragStart}
+          dragEnd={dragEnd}
+          isValid={isValidTimeSlot}
+        />
+      )}
+
+      {previewTimeRange && isSameDay(previewTimeRange.start, day) && (
+        <PreviewTimeRange timeRange={previewTimeRange} isValid={true} />
+      )}
+    </div>
+  );
+}

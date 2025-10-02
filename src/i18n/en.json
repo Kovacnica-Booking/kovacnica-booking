@@ -1,0 +1,77 @@
+{
+  "common": {
+    "today": "Today",
+    "room": "Room",
+    "title": "Title",
+    "pin": "PIN",
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "book": "Book",
+    "to": "to",
+    "dateAndTime": "Date and time"
+  },
+  "rooms": {
+    "sejna1": "Floor 1",
+    "sejna2": "Floor 2"
+  },
+  "bookings": {
+    "newBooking": "New Booking",
+    "bookingDetails": "Booking Details",
+    "enterPin": "Enter PIN (4 digits)",
+    "enterPinToManage": "Enter PIN to manage booking",
+    "enterPinToConfirm": "Enter PIN to confirm changes",
+    "incorrectPin": "Incorrect PIN"
+  },
+  "months": {
+    "short": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    },
+    "long": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    }
+  },
+  "weekdays": {
+    "short": {
+      "mon": "MON",
+      "tue": "TUE",
+      "wed": "WED",
+      "thu": "THU",
+      "fri": "FRI",
+      "sat": "SAT",
+      "sun": "SUN"
+    },
+    "long": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
+  }
+}

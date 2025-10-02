@@ -1,0 +1,77 @@
+{
+  "common": {
+    "today": "Danes",
+    "room": "Soba",
+    "title": "Naslov",
+    "pin": "PIN",
+    "close": "Zapri",
+    "cancel": "Prekliči",
+    "save": "Shrani",
+    "delete": "Izbriši",
+    "book": "Rezerviraj",
+    "to": "do",
+    "dateAndTime": "Datum in ura"
+  },
+  "rooms": {
+    "sejna1": "Sejna 1",
+    "sejna2": "Sejna 2"
+  },
+  "bookings": {
+    "newBooking": "Nova rezervacija",
+    "bookingDetails": "Podrobnosti rezervacije",
+    "enterPin": "Vnesi PIN (4 številke)",
+    "enterPinToManage": "Vnesi PIN za upravljanje rezervacije",
+    "enterPinToConfirm": "Vnesi PIN za potrditev sprememb",
+    "incorrectPin": "Napačen PIN"
+  },
+  "months": {
+    "short": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "Maj",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Avg",
+      "sep": "Sep",
+      "oct": "Okt",
+      "nov": "Nov",
+      "dec": "Dec"
+    },
+    "long": {
+      "january": "Januar",
+      "february": "Februar",
+      "march": "Marec",
+      "april": "April",
+      "may": "Maj",
+      "june": "Junij",
+      "july": "Julij",
+      "august": "Avgust",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "December"
+    }
+  },
+  "weekdays": {
+    "short": {
+      "mon": "PON",
+      "tue": "TOR",
+      "wed": "SRE",
+      "thu": "ČET",
+      "fri": "PET",
+      "sat": "SOB",
+      "sun": "NED"
+    },
+    "long": {
+      "monday": "Ponedeljek",
+      "tuesday": "Torek",
+      "wednesday": "Sreda",
+      "thursday": "Četrtek",
+      "friday": "Petek",
+      "saturday": "Sobota",
+      "sunday": "Nedelja"
+    }
+  }
+}
