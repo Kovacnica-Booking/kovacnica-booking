@@ -25,8 +25,6 @@ export function useCalendarDrag(
   const [isValidTimeSlot, setIsValidTimeSlot] = useState(true);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  // Check if device is mobile
-  const isMobile = () => window.innerWidth < 640;
   useEffect(() => {
     const handleGlobalEnd = () => {
       if (dragStart && isValidTimeSlot) {
@@ -79,47 +77,15 @@ export function useCalendarDrag(
       document.body.classList.remove('no-select');
     };
 
-    if (!isMobile()) {
-      window.addEventListener('mouseup', handleGlobalEnd);
-    }
+    window.addEventListener('mouseup', handleGlobalEnd);
     window.addEventListener('touchend', handleGlobalEnd);
     return () => {
-      if (!isMobile()) {
-        window.removeEventListener('mouseup', handleGlobalEnd);
-      }
+      window.removeEventListener('mouseup', handleGlobalEnd);
       window.removeEventListener('touchend', handleGlobalEnd);
     };
   }, [isDragging, dragStart, dragEnd, hasMoved, onTimeRangeSelect, isTimeSlotAvailable, isValidTimeSlot]);
 
-  const handleTapToBook = (day: Date, hour: number, isFirstHalf: boolean) => {
-    const time = setMinutes(setHours(day, hour), isFirstHalf ? 0 : 30);
-    const endTime = addMinutes(time, 60);
-    
-    if (!isTimeSlotAvailable(time, endTime)) {
-      return;
-    }
-
-    const columnEl = gridRef.current?.querySelector(`[data-day="${format(day, 'yyyy-MM-dd')}"]`);
-    if (columnEl) {
-      const rect = columnEl.getBoundingClientRect();
-      const cellHeight = 64; // Mobile cell height
-      const startHour = time.getHours();
-      const startMinute = time.getMinutes();
-      const top = rect.top + (startHour - 7) * cellHeight + startMinute * (cellHeight / 60);
-
-      onTimeRangeSelect(
-        { start: time, end: endTime },
-        { top, left: rect.left, right: rect.right, width: rect.width }
-      );
-    }
-  };
   const handleDragStart = (day: Date, hour: number, isFirstHalf: boolean) => {
-    // On mobile, use tap-to-book instead of drag
-    if (isMobile()) {
-      handleTapToBook(day, hour, isFirstHalf);
-      return;
-    }
-
     const time = setMinutes(setHours(day, hour), isFirstHalf ? 0 : 30);
     
     if (!isTimeSlotAvailable(time, addMinutes(time, 30))) {
@@ -136,9 +102,6 @@ export function useCalendarDrag(
   };
 
   const handleDragMove = (day: Date, clientY: number) => {
-    // Disable drag move on mobile
-    if (isMobile()) return;
-    
     if (!dragStart || !isSameDay(dragStart.day, day)) return;
 
     const columnEl = gridRef.current?.querySelector(`[data-day="${format(day, 'yyyy-MM-dd')}"]`);
@@ -166,9 +129,6 @@ export function useCalendarDrag(
   };
 
   const isInDragRange = (day: Date, hour: number, isFirstHalf: boolean) => {
-    // No drag range display on mobile
-    if (isMobile()) return false;
-    
     if (!isDragging || !dragStart || !dragEnd) return false;
     
     if (!isSameDay(dragStart.day, day)) return false;

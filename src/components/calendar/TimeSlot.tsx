@@ -7,13 +7,11 @@ interface TimeSlotProps {
 }
 
 export function TimeSlot({ isInDragRange, onDragStart, position }: TimeSlotProps) {
-  const isMobile = window.innerWidth < 640;
-
   return (
     <div
       className={`absolute inset-x-0 ${position === 'top' ? 'top-0' : 'bottom-0'} h-1/2`}
-      onMouseDown={!isMobile ? onDragStart : undefined}
-      onTouchStart={isMobile ? onDragStart : undefined}
+      onMouseDown={onDragStart}
+      onTouchStart={onDragStart}
     />
   );
 }

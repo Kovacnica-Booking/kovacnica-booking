@@ -49,7 +49,7 @@ export function TimeColumn({
       className="col-span-1 border-l relative" 
       style={{ borderColor: 'hsl(217 6% 26% / 1)' }}
       data-day={format(day, 'yyyy-MM-dd')}
-      onMouseMove={window.innerWidth >= 640 ? (e) => onDragMove(day, e.clientY) : undefined}
+      onMouseMove={(e) => onDragMove(day, e.clientY)}
     >
       {hours.map(hour => (
         <div
