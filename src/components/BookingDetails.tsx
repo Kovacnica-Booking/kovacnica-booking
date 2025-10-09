@@ -22,6 +22,7 @@ export function BookingDetails({ booking, bookings, onClose, onDelete, onUpdate 
   const [startTime, setStartTime] = useState(parseISO(booking.start_time));
   const [endTime, setEndTime] = useState(parseISO(booking.end_time));
   const [title, setTitle] = useState(booking.title);
+  const [key, setKey] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
   const titleInputRef = useRef<HTMLInputElement>(null);
 
@@ -84,6 +85,11 @@ export function BookingDetails({ booking, bookings, onClose, onDelete, onUpdate 
         setError('');
       } else {
         setError(t('bookings.incorrectPin'));
+        setTimeout(() => {
+          setPin('');
+          setError('');
+          setKey(prev => prev + 1);
+        }, 1000);
       }
     }
   }, [pin, booking.pin, t]);
@@ -228,9 +234,10 @@ export function BookingDetails({ booking, bookings, onClose, onDelete, onUpdate 
             <label className="block text-sm font-medium text-gray-300 mb-1">
               {t('bookings.enterPinToManage')}
             </label>
-            <NumberInput 
-              value={pin} 
-              onChange={setPin} 
+            <NumberInput
+              key={key}
+              value={pin}
+              onChange={setPin}
               error={!!error}
               tabIndex={1}
             />
