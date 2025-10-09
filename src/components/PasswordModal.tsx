@@ -51,23 +51,21 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
   }, [pin, onAuthenticate]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div
-        className="absolute inset-0 bg-black/80"
-        style={{ backdropFilter: 'blur(4px)' }}
-      />
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ backdropFilter: 'blur(4px)' }}
+    >
+      <div className="fixed inset-0 bg-black bg-opacity-80" />
 
       <div
         ref={modalRef}
-        className="relative bg-[#2a2a2a] rounded-lg shadow-xl p-8 max-w-md w-full mx-4"
-        style={{
-          border: '1px solid hsl(217 6% 26% / 1)',
-        }}
+        className="rounded-lg p-6 w-full max-w-md relative border border-[#333333] mx-4"
+        style={{ backgroundColor: 'hsl(210, 3%, 12%)' }}
       >
-        <h2 className="text-2xl font-semibold text-white mb-2">
+        <h2 className="text-xl font-semibold mb-2">
           {t('auth.enterPassword')}
         </h2>
-        <p className="text-gray-400 mb-6">
+        <p className="text-gray-400 mb-6 text-sm">
           {t('auth.passwordRequired')}
         </p>
 

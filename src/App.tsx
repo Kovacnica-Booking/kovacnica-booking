@@ -19,10 +19,6 @@ function App() {
 
   const { bookings, createBooking, deleteBooking, updateBooking } = useBookings(selectedDate);
 
-  if (!isAuthenticated) {
-    return <PasswordModal onAuthenticate={() => setIsAuthenticated(true)} />;
-  }
-
   const handleTimeRangeSelect = (range: TimeRange, position: { top: number; left: number; right: number; width: number }) => {
     setSelectedTimeRange(range);
     setModalPosition(position);
@@ -123,6 +119,10 @@ function App() {
           onDelete={handleDeleteBooking}
           onUpdate={handleUpdateBooking}
         />
+      )}
+
+      {!isAuthenticated && (
+        <PasswordModal onAuthenticate={() => setIsAuthenticated(true)} />
       )}
     </div>
   );
