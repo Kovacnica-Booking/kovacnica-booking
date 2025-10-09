@@ -38,7 +38,7 @@ export function CalendarNavigation({ selectedDate, onDateChange }: CalendarNavig
         <div className="flex items-center gap-2">
           <button
             onClick={() => onDateChange(subWeeks(selectedDate, 1))}
-            className="p-3 hover:bg-[#333333] rounded-full"
+            className="p-2.5 hover:bg-[#333333] rounded-full"
           >
             <ChevronLeft size={20} />
           </button>
