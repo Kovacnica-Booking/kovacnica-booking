@@ -21,6 +21,7 @@ interface TimeColumnProps {
   dragStart?: DragState | null;
   dragEnd?: DragState | null;
   isValidTimeSlot?: boolean;
+  isMobile?: boolean;
 }
 
 export function TimeColumn({
@@ -35,7 +36,8 @@ export function TimeColumn({
   isDragging,
   dragStart,
   dragEnd,
-  isValidTimeSlot = true
+  isValidTimeSlot = true,
+  isMobile = false
 }: TimeColumnProps) {
   const { t } = useTranslation();
 
@@ -45,11 +47,11 @@ export function TimeColumn({
   });
 
   return (
-    <div 
-      className="col-span-1 border-l relative" 
+    <div
+      className="col-span-1 border-l relative"
       style={{ borderColor: 'hsl(217 6% 26% / 1)' }}
       data-day={format(day, 'yyyy-MM-dd')}
-      onMouseMove={(e) => onDragMove(day, e.clientY)}
+      onMouseMove={!isMobile ? (e) => onDragMove(day, e.clientY) : undefined}
     >
       {hours.map(hour => (
         <div
@@ -65,11 +67,13 @@ export function TimeColumn({
             isInDragRange={isInDragRange(day, hour, true)}
             onDragStart={() => onDragStart(day, hour, true)}
             position="top"
+            isMobile={isMobile}
           />
           <TimeSlot
             isInDragRange={isInDragRange(day, hour, false)}
             onDragStart={() => onDragStart(day, hour, false)}
             position="bottom"
+            isMobile={isMobile}
           />
         </div>
       ))}

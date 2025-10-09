@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { CalendarHeader } from './calendar/CalendarHeader';
 import { TimeGrid } from './calendar/TimeGrid';
 import { useCalendarDrag } from '@/hooks/useCalendarDrag';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import type { Booking, Room, TimeRange } from '@/types';
 
 interface CalendarProps {
@@ -15,15 +16,16 @@ interface CalendarProps {
   previewTimeRange?: TimeRange | null;
 }
 
-export function Calendar({ 
-  selectedDate, 
-  bookings, 
-  selectedRoom, 
-  onTimeRangeSelect, 
+export function Calendar({
+  selectedDate,
+  bookings,
+  selectedRoom,
+  onTimeRangeSelect,
   onBookingClick,
-  previewTimeRange 
+  previewTimeRange
 }: CalendarProps) {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
   const hours = Array.from({ length: 14 }, (_, i) => i + 7);
@@ -54,7 +56,7 @@ export function Calendar({
     isInDragRange,
     hasMoved,
     isValidTimeSlot
-  } = useCalendarDrag(isTimeSlotAvailable, onTimeRangeSelect);
+  } = useCalendarDrag(isTimeSlotAvailable, onTimeRangeSelect, isMobile);
 
   return (
     <div className="flex flex-col h-[calc(100vh-80px)]">
@@ -75,6 +77,7 @@ export function Calendar({
           dragStart={dragStart}
           dragEnd={dragEnd}
           isValidTimeSlot={isValidTimeSlot}
+          isMobile={isMobile}
         />
       </div>
     </div>

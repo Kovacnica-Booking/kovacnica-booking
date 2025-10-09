@@ -19,6 +19,7 @@ interface TimeGridProps {
   dragStart?: DragState | null;
   dragEnd?: DragState | null;
   isValidTimeSlot?: boolean;
+  isMobile?: boolean;
 }
 
 export function TimeGrid({
@@ -34,7 +35,8 @@ export function TimeGrid({
   isDragging,
   dragStart,
   dragEnd,
-  isValidTimeSlot
+  isValidTimeSlot,
+  isMobile = false
 }: TimeGridProps) {
   const { t } = useTranslation();
 
@@ -75,6 +77,7 @@ export function TimeGrid({
           dragStart={dragStart}
           dragEnd={dragEnd}
           isValidTimeSlot={isValidTimeSlot}
+          isMobile={isMobile}
         />
       ))}
     </div>

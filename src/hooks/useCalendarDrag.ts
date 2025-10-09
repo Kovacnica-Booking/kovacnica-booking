@@ -16,7 +16,8 @@ interface Position {
 
 export function useCalendarDrag(
   isTimeSlotAvailable: (start: Date, end: Date) => boolean,
-  onTimeRangeSelect: (range: TimeRange, position: Position) => void
+  onTimeRangeSelect: (range: TimeRange, position: Position) => void,
+  isMobile: boolean = false
 ) {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<DragState | null>(null);
@@ -27,7 +28,7 @@ export function useCalendarDrag(
 
   useEffect(() => {
     const handleGlobalEnd = () => {
-      if (dragStart && isValidTimeSlot) {
+      if (dragStart && isValidTimeSlot && !isMobile) {
         if (!hasMoved) {
           // Single click - create 1-hour slot
           const endTime = addMinutes(dragStart.time, 60);
@@ -78,18 +79,42 @@ export function useCalendarDrag(
     };
 
     window.addEventListener('mouseup', handleGlobalEnd);
-    window.addEventListener('touchend', handleGlobalEnd);
+    if (!isMobile) {
+      window.addEventListener('touchend', handleGlobalEnd);
+    }
     return () => {
       window.removeEventListener('mouseup', handleGlobalEnd);
-      window.removeEventListener('touchend', handleGlobalEnd);
+      if (!isMobile) {
+        window.removeEventListener('touchend', handleGlobalEnd);
+      }
     };
-  }, [isDragging, dragStart, dragEnd, hasMoved, onTimeRangeSelect, isTimeSlotAvailable, isValidTimeSlot]);
+  }, [isDragging, dragStart, dragEnd, hasMoved, onTimeRangeSelect, isTimeSlotAvailable, isValidTimeSlot, isMobile]);
 
   const handleDragStart = (day: Date, hour: number, isFirstHalf: boolean) => {
     const time = setMinutes(setHours(day, hour), isFirstHalf ? 0 : 30);
-    
+
     if (!isTimeSlotAvailable(time, addMinutes(time, 30))) {
       setIsValidTimeSlot(false);
+      return;
+    }
+
+    if (isMobile) {
+      const endTime = addMinutes(time, 60);
+      if (isTimeSlotAvailable(time, endTime)) {
+        const columnEl = gridRef.current?.querySelector(`[data-day="${format(day, 'yyyy-MM-dd')}"]`);
+        if (columnEl) {
+          const rect = columnEl.getBoundingClientRect();
+          const cellHeight = window.innerWidth < 640 ? 64 : 48;
+          const startHour = time.getHours();
+          const startMinute = time.getMinutes();
+          const top = rect.top + (startHour - 7) * cellHeight + startMinute * (cellHeight / 60);
+
+          onTimeRangeSelect(
+            { start: time, end: endTime },
+            { top, left: rect.left, right: rect.right, width: rect.width }
+          );
+        }
+      }
       return;
     }
 
@@ -102,7 +127,7 @@ export function useCalendarDrag(
   };
 
   const handleDragMove = (day: Date, clientY: number) => {
-    if (!dragStart || !isSameDay(dragStart.day, day)) return;
+    if (isMobile || !dragStart || !isSameDay(dragStart.day, day)) return;
 
     const columnEl = gridRef.current?.querySelector(`[data-day="${format(day, 'yyyy-MM-dd')}"]`);
     if (columnEl) {
