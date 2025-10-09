@@ -40,6 +40,7 @@ export function TimeColumn({
   isMobile = false
 }: TimeColumnProps) {
   const { t } = useTranslation();
+  const cellHeight = isMobile ? '64px' : '48px';
 
   const dayBookings = bookings.filter(booking => {
     const bookingStart = new Date(booking.start_time);
@@ -57,7 +58,7 @@ export function TimeColumn({
         <div
           key={hour}
           className="relative"
-          style={{ height: window.innerWidth < 640 ? '64px' : '48px' }}
+          style={{ height: cellHeight }}
         >
           <div 
             className="absolute inset-x-0 -top-px h-px" 
@@ -83,6 +84,7 @@ export function TimeColumn({
           key={booking.id}
           booking={booking}
           onBookingClick={onBookingClick}
+          isMobile={isMobile}
         />
       ))}
 
@@ -91,11 +93,12 @@ export function TimeColumn({
           dragStart={dragStart}
           dragEnd={dragEnd}
           isValid={isValidTimeSlot}
+          isMobile={isMobile}
         />
       )}
 
       {previewTimeRange && isSameDay(previewTimeRange.start, day) && (
-        <PreviewTimeRange timeRange={previewTimeRange} isValid={true} />
+        <PreviewTimeRange timeRange={previewTimeRange} isValid={true} isMobile={isMobile} />
       )}
     </div>
   );

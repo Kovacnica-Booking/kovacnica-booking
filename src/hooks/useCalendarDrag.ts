@@ -25,6 +25,7 @@ export function useCalendarDrag(
   const [hasMoved, setHasMoved] = useState(false);
   const [isValidTimeSlot, setIsValidTimeSlot] = useState(true);
   const gridRef = useRef<HTMLDivElement>(null);
+  const cellHeight = isMobile ? 64 : 48;
 
   useEffect(() => {
     const handleGlobalEnd = () => {
@@ -36,7 +37,6 @@ export function useCalendarDrag(
             const columnEl = gridRef.current?.querySelector(`[data-day="${format(dragStart.day, 'yyyy-MM-dd')}"]`);
             if (columnEl) {
               const rect = columnEl.getBoundingClientRect();
-              const cellHeight = window.innerWidth < 640 ? 64 : 48;
               const startHour = dragStart.time.getHours();
               const startMinute = dragStart.time.getMinutes();
               const top = rect.top + (startHour - 7) * cellHeight + startMinute * (cellHeight / 60);
@@ -56,7 +56,6 @@ export function useCalendarDrag(
             const columnEl = gridRef.current?.querySelector(`[data-day="${format(dragStart.day, 'yyyy-MM-dd')}"]`);
             if (columnEl) {
               const rect = columnEl.getBoundingClientRect();
-              const cellHeight = window.innerWidth < 640 ? 64 : 48;
               const startHour = startTime.getHours();
               const startMinute = startTime.getMinutes();
               const top = rect.top + (startHour - 7) * cellHeight + startMinute * (cellHeight / 60);
@@ -88,7 +87,7 @@ export function useCalendarDrag(
         window.removeEventListener('touchend', handleGlobalEnd);
       }
     };
-  }, [isDragging, dragStart, dragEnd, hasMoved, onTimeRangeSelect, isTimeSlotAvailable, isValidTimeSlot, isMobile]);
+  }, [isDragging, dragStart, dragEnd, hasMoved, onTimeRangeSelect, isTimeSlotAvailable, isValidTimeSlot, isMobile, cellHeight]);
 
   const handleDragStart = (day: Date, hour: number, isFirstHalf: boolean) => {
     const time = setMinutes(setHours(day, hour), isFirstHalf ? 0 : 30);
@@ -104,7 +103,6 @@ export function useCalendarDrag(
         const columnEl = gridRef.current?.querySelector(`[data-day="${format(day, 'yyyy-MM-dd')}"]`);
         if (columnEl) {
           const rect = columnEl.getBoundingClientRect();
-          const cellHeight = window.innerWidth < 640 ? 64 : 48;
           const startHour = time.getHours();
           const startMinute = time.getMinutes();
           const top = rect.top + (startHour - 7) * cellHeight + startMinute * (cellHeight / 60);
@@ -133,7 +131,6 @@ export function useCalendarDrag(
     if (columnEl) {
       const rect = columnEl.getBoundingClientRect();
       const y = clientY - rect.top;
-      const cellHeight = window.innerWidth < 640 ? 64 : 48;
       const hour = Math.floor(y / cellHeight) + 7;
       const minute = Math.floor((y % cellHeight) / (cellHeight / 2)) * 30;
       

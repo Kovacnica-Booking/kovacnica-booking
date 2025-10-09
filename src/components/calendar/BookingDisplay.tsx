@@ -5,16 +5,17 @@ import type { Booking } from '@/types';
 interface BookingDisplayProps {
   booking: Booking;
   onBookingClick: (booking: Booking) => void;
+  isMobile?: boolean;
 }
 
-export function BookingDisplay({ booking, onBookingClick }: BookingDisplayProps) {
+export function BookingDisplay({ booking, onBookingClick, isMobile = false }: BookingDisplayProps) {
   const start = parseISO(booking.start_time);
   const end = parseISO(booking.end_time);
   const startHour = start.getHours();
   const startMinute = start.getMinutes();
   const duration = differenceInMinutes(end, start);
-  
-  const cellHeight = window.innerWidth < 640 ? 64 : 48;
+
+  const cellHeight = isMobile ? 64 : 48;
   const top = (startHour - 7) * cellHeight + startMinute * (cellHeight / 60);
   const height = duration * (cellHeight / 60);
   

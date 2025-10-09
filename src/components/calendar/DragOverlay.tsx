@@ -7,11 +7,12 @@ interface DragOverlayProps {
   dragStart: DragState;
   dragEnd: DragState;
   isValid: boolean;
+  isMobile?: boolean;
 }
 
-export function DragOverlay({ dragStart, dragEnd, isValid }: DragOverlayProps) {
+export function DragOverlay({ dragStart, dragEnd, isValid, isMobile = false }: DragOverlayProps) {
   const { t } = useTranslation();
-  const cellHeight = window.innerWidth < 640 ? 64 : 48;
+  const cellHeight = isMobile ? 64 : 48;
 
   const startTime = dragStart.time < dragEnd.time ? dragStart.time : dragEnd.time;
   const endTime = dragStart.time < dragEnd.time ? dragEnd.time : dragStart.time;

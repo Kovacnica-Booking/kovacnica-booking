@@ -6,11 +6,12 @@ import type { TimeRange } from '@/types';
 interface PreviewTimeRangeProps {
   timeRange: TimeRange;
   isValid?: boolean;
+  isMobile?: boolean;
 }
 
-export function PreviewTimeRange({ timeRange, isValid = true }: PreviewTimeRangeProps) {
+export function PreviewTimeRange({ timeRange, isValid = true, isMobile = false }: PreviewTimeRangeProps) {
   const { t } = useTranslation();
-  const cellHeight = window.innerWidth < 640 ? 64 : 48;
+  const cellHeight = isMobile ? 64 : 48;
   const startHour = timeRange.start.getHours();
   const startMinute = timeRange.start.getMinutes();
   const top = (startHour - 7) * cellHeight + startMinute * (cellHeight / 60);

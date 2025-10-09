@@ -39,10 +39,11 @@ export function TimeGrid({
   isMobile = false
 }: TimeGridProps) {
   const { t } = useTranslation();
+  const cellHeight = isMobile ? '64px' : '48px';
 
   return (
-    <div 
-      className="grid grid-cols-[2.5rem_repeat(7,1fr)] sm:grid-cols-[4rem_repeat(7,1fr)]" 
+    <div
+      className="grid grid-cols-[2.5rem_repeat(7,1fr)] sm:grid-cols-[4rem_repeat(7,1fr)]"
       ref={gridRef}
     >
       <div className="col-span-1">
@@ -50,9 +51,9 @@ export function TimeGrid({
           <div
             key={hour}
             className="text-right pr-1 sm:pr-2 text-sm relative"
-            style={{ 
+            style={{
               color: 'hsl(217 6% 44% / 1)',
-              height: window.innerWidth < 640 ? '64px' : '48px'
+              height: cellHeight
             }}
           >
             <span className="absolute -top-2.5 right-1 sm:right-2 whitespace-nowrap text-[10px] sm:text-sm">
