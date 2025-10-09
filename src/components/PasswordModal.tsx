@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PinInput } from '@/components/ui/pin-input';
+import { NumberInput } from '@/components/ui/number-input';
 
 interface PasswordModalProps {
   onAuthenticate: () => void;
@@ -74,10 +74,11 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
             <label className="block text-sm font-medium text-gray-300 mb-3">
               {t('auth.password')}
             </label>
-            <PinInput
+            <NumberInput
               value={pin}
               onChange={setPin}
               error={error}
+              tabIndex={1}
             />
             {error && (
               <p className="text-red-400 text-sm mt-2">
