@@ -40,7 +40,7 @@ export function Header({
 
   return (
     <>
-      <div className="w-full p-4 border-b fixed" style={{ borderColor: 'hsl(217 6% 26% / 1)', backgroundColor: 'hsl(240 3% 11%)' }}>
+      <div className="w-full p-4 border-b fixed" style={{ borderColor: 'hsl(217 6% 26% / 1)', backgroundColor: red /*'hsl(240 3% 11%)'*/ }}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Logo />
