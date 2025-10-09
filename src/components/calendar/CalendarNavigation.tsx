@@ -35,7 +35,7 @@ export function CalendarNavigation({ selectedDate, onDateChange }: CalendarNavig
         >
           {t('common.today')}
         </button>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center">
           <button
             onClick={() => onDateChange(subWeeks(selectedDate, 1))}
             className="p-2.5 hover:bg-[#333333] rounded-full"
