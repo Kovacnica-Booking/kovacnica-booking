@@ -14,7 +14,7 @@ export function LanguagePicker() {
   return (
     <button
       onClick={toggleLanguage}
-      className="px-2 py-2 rounded-full bg-transparent w-12 text-gray-400 hover:bg-[#444444] hover:text-white transition-colors"
+      className="px-2 py-2 rounded-full bg-transparent w-12 text-gray-400 hover:bg-[#333333] hover:text-white transition-colors"
     >
       {buttonText}
     </button>
