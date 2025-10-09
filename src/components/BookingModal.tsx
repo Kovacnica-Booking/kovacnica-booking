@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { format, setHours, setMinutes, addMinutes, parseISO, isBefore, isAfter } from 'date-fns';
 import { X, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import ReCAPTCHA from 'react-google-recaptcha';
 import { NumberInput } from '@/components/ui/number-input';
 import { Select } from '@/components/ui/select';
 import type { Room, TimeRange, Booking } from '@/types';
@@ -36,14 +35,9 @@ export function BookingModal({
   const [pin, setPin] = useState('');
   const [startTime, setStartTime] = useState(timeRange.start);
   const [endTime, setEndTime] = useState(timeRange.end);
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const titleInputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-
-  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
     const scrollableElements = document.querySelectorAll('.overflow-y-auto');
@@ -167,33 +161,14 @@ export function BookingModal({
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!title || pin.length !== 4 || !isTimeSlotAvailable(startTime, true)) {
       return;
     }
 
-    setIsSubmitting(true);
-
-    try {
-      // Execute reCAPTCHA
-      if (recaptchaRef.current) {
-        const token = await recaptchaRef.current.executeAsync();
-        if (token) {
-          setRecaptchaToken(token);
-          onSubmit(title, pin);
-        } else {
-          console.error('reCAPTCHA verification failed');
-        }
-        // Reset reCAPTCHA for next use
-        recaptchaRef.current.reset();
-      }
-    } catch (error) {
-      console.error('reCAPTCHA error:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    onSubmit(title, pin);
   };
 
   const formatDate = (date: Date) => {
@@ -339,23 +314,13 @@ export function BookingModal({
               <button
                 type="submit"
                 className="px-6 py-2 font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed h-12 whitespace-nowrap"
-                disabled={!title || pin.length !== 4 || !isTimeSlotAvailable(startTime, true) || isSubmitting}
+                disabled={!title || pin.length !== 4 || !isTimeSlotAvailable(startTime, true)}
                 tabIndex={6}
               >
-                {isSubmitting ? 'Verifying...' : t('common.book')}
+                {t('common.book')}
               </button>
             </div>
           </div>
-
-          {/* Invisible reCAPTCHA */}
-          {recaptchaSiteKey && (
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey={recaptchaSiteKey}
-              size="invisible"
-              badge="bottomright"
-            />
-          )}
         </form>
       </div>
     </div>
