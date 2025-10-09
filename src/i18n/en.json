@@ -24,6 +24,12 @@
     "enterPinToConfirm": "Enter PIN to confirm changes",
     "incorrectPin": "Incorrect PIN"
   },
+  "auth": {
+    "enterPassword": "Enter Password",
+    "passwordRequired": "Please enter the password to access the calendar",
+    "password": "Password",
+    "incorrectPassword": "Incorrect password"
+  },
   "months": {
     "short": {
       "jan": "Jan",

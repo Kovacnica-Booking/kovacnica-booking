@@ -24,6 +24,12 @@
     "enterPinToConfirm": "Vnesi PIN za potrditev sprememb",
     "incorrectPin": "Napačen PIN"
   },
+  "auth": {
+    "enterPassword": "Vnesi geslo",
+    "passwordRequired": "Prosimo, vnesite geslo za dostop do koledarja",
+    "password": "Geslo",
+    "incorrectPassword": "Napačno geslo"
+  },
   "months": {
     "short": {
       "jan": "Jan",

@@ -4,10 +4,12 @@ import { CalendarNavigation } from '@/components/calendar/CalendarNavigation';
 import { Calendar } from '@/components/Calendar';
 import { BookingModal } from '@/components/BookingModal';
 import { BookingDetails } from '@/components/BookingDetails';
+import { PasswordModal } from '@/components/PasswordModal';
 import { useBookings } from '@/hooks/useBookings';
 import type { Booking, Room, TimeRange } from '@/types';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedRoom, setSelectedRoom] = useState<Room>('Sejna 1');
   const [selectedTimeRange, setSelectedTimeRange] = useState<TimeRange | null>(null);
@@ -16,6 +18,10 @@ function App() {
   const [previewTimeRange, setPreviewTimeRange] = useState<TimeRange | null>(null);
 
   const { bookings, createBooking, deleteBooking, updateBooking } = useBookings(selectedDate);
+
+  if (!isAuthenticated) {
+    return <PasswordModal onAuthenticate={() => setIsAuthenticated(true)} />;
+  }
 
   const handleTimeRangeSelect = (range: TimeRange, position: { top: number; left: number; right: number; width: number }) => {
     setSelectedTimeRange(range);
