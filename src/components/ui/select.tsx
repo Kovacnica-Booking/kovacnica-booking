@@ -24,6 +24,10 @@ export function Select({ value, onChange, options, className, disabled, tabIndex
   const [selectedIndex, setSelectedIndex] = React.useState<number>(
     options.findIndex(option => option.value === value)
   );
+  const [isMobile, setIsMobile] = React.useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768 || ('ontouchstart' in window && !window.matchMedia('(pointer: fine)').matches);
+  });
 
   const { refs, floatingStyles, context } = useFloating({
     placement: 'bottom-start',
@@ -119,7 +123,7 @@ export function Select({ value, onChange, options, className, disabled, tabIndex
         />
       </button>
       {isOpen && (
-        <FloatingOverlay lockScroll style={{ zIndex: 100 }}>
+        <FloatingOverlay lockScroll={!isMobile} style={{ zIndex: 100 }}>
           <FloatingFocusManager context={context} modal={false}>
             <div
               ref={refs.setFloating}

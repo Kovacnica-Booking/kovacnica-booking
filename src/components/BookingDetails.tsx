@@ -26,6 +26,30 @@ export function BookingDetails({ booking, bookings, onClose, onDelete, onUpdate 
   const titleInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const scrollableElements = document.querySelectorAll('.overflow-y-auto');
+    const scrollPositions = new Map<Element, number>();
+
+    scrollableElements.forEach(el => {
+      scrollPositions.set(el, el.scrollTop);
+    });
+
+    const preventScrollReset = () => {
+      scrollableElements.forEach(el => {
+        const savedPosition = scrollPositions.get(el);
+        if (savedPosition !== undefined && el.scrollTop !== savedPosition) {
+          el.scrollTop = savedPosition;
+        }
+      });
+    };
+
+    const intervalId = setInterval(preventScrollReset, 16);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  useEffect(() => {
     if (isVerified) {
       titleInputRef.current?.focus();
     }

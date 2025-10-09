@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { startOfWeek, addDays, parseISO } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { CalendarHeader } from './calendar/CalendarHeader';
@@ -26,6 +26,7 @@ export function Calendar({
 }: CalendarProps) {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
   const hours = Array.from({ length: 14 }, (_, i) => i + 7);
@@ -62,7 +63,7 @@ export function Calendar({
     <div className="flex flex-col flex-1">
       <CalendarHeader days={days} />
 
-      <div className="flex-1 overflow-y-auto">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto" style={{ scrollBehavior: 'auto' }}>
         <TimeGrid
           days={days}
           hours={hours}

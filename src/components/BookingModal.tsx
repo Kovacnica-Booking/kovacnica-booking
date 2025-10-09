@@ -46,7 +46,29 @@ export function BookingModal({
   const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
+    const scrollableElements = document.querySelectorAll('.overflow-y-auto');
+    const scrollPositions = new Map<Element, number>();
+
+    scrollableElements.forEach(el => {
+      scrollPositions.set(el, el.scrollTop);
+    });
+
+    const preventScrollReset = () => {
+      scrollableElements.forEach(el => {
+        const savedPosition = scrollPositions.get(el);
+        if (savedPosition !== undefined && el.scrollTop !== savedPosition) {
+          el.scrollTop = savedPosition;
+        }
+      });
+    };
+
+    const intervalId = setInterval(preventScrollReset, 16);
+
     titleInputRef.current?.focus();
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
   useEffect(() => {
