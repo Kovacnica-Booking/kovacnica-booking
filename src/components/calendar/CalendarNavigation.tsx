@@ -31,7 +31,7 @@ export function CalendarNavigation({ selectedDate, onDateChange }: CalendarNavig
       <div className="flex items-center gap-4">
         <button
           onClick={() => onDateChange(new Date())}
-          className="px-6 py-2 rounded-full font-medium bg-transparent border border-[hsl(217 6% 26% / 1)] hover:bg-[#444444] transition-colors"
+          className="px-6 py-2 rounded-full font-medium bg-transparent border hover:bg-[#444444] transition-colors" style={{ borderColor: 'hsl(217 6% 26% / 1)'
         >
           {t('common.today')}
         </button>
