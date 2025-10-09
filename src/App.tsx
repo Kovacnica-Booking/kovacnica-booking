@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Header } from '@/components/layout/Header';
+import { AppHeader } from '@/components/calendar/AppHeader';
+import { CalendarNavigation } from '@/components/calendar/CalendarNavigation';
 import { Calendar } from '@/components/Calendar';
 import { BookingModal } from '@/components/BookingModal';
 import { BookingDetails } from '@/components/BookingDetails';
@@ -76,12 +77,15 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen text-white" style={{ backgroundColor: 'hsl(240 3% 8%)' }}>
-      <Header
-        selectedDate={selectedDate}
+    <div className="min-h-screen flex flex-col text-white" style={{ backgroundColor: 'hsl(240 3% 8%)' }}>
+      <AppHeader
         selectedRoom={selectedRoom}
-        onDateChange={setSelectedDate}
         onRoomChange={setSelectedRoom}
+      />
+
+      <CalendarNavigation
+        selectedDate={selectedDate}
+        onDateChange={setSelectedDate}
       />
 
       <Calendar

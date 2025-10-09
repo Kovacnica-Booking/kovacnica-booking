@@ -59,7 +59,7 @@ export function Calendar({
   } = useCalendarDrag(isTimeSlotAvailable, onTimeRangeSelect, isMobile);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-80px)]">
+    <div className="flex flex-col flex-1">
       <CalendarHeader days={days} />
 
       <div className="flex-1 overflow-y-auto">
