@@ -20,7 +20,7 @@ export function AppHeader({ selectedRoom, onRoomChange }: AppHeaderProps) {
           <div className="flex items-center gap-1 bg-[#333333] p-1 rounded-full min-w-[200px]">
             <button
               onClick={() => onRoomChange('Sejna 1')}
-              className={`flex-1 px-4 py-1 rounded-full transition-colors ${
+              className={`flex-1 px-3 py-1 rounded-full transition-colors ${
                 selectedRoom === 'Sejna 1'
                   ? 'bg-white text-black font-medium'
                   : 'text-gray-400 hover:text-white'
