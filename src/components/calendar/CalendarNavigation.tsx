@@ -44,7 +44,7 @@ export function CalendarNavigation({ selectedDate, onDateChange }: CalendarNavig
           </button>
           <button
             onClick={() => onDateChange(addWeeks(selectedDate, 1))}
-            className="p-3 hover:bg-[#333333] rounded-full"
+            className="p-2.5 hover:bg-[#333333] rounded-full"
           >
             <ChevronRight size={20} />
           </button>
