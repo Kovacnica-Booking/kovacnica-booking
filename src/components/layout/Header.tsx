@@ -71,7 +71,7 @@ export function Header({
         </div>
       </div>
 
-      <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: 'hsl(217 6% 26% / 1)' }}>
+      <div className="flex items-center justify-between p-4 border-b fixed" style={{ borderColor: 'hsl(217 6% 26% / 1)' }}>
         <div className="flex items-center gap-4">
           <button 
             onClick={() => onDateChange(new Date())}
