@@ -10,6 +10,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
   const { t } = useTranslation();
   const [pin, setPin] = useState('');
   const [error, setError] = useState(false);
+  const [key, setKey] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,6 +46,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
         setTimeout(() => {
           setPin('');
           setError(false);
+          setKey(prev => prev + 1);
         }, 1000);
       }
     }
@@ -75,6 +77,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               {t('auth.password')}
             </label>
             <NumberInput
+              key={key}
               value={pin}
               onChange={setPin}
               error={error}
