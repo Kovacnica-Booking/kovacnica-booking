@@ -23,7 +23,7 @@ export function BookingDisplay({ booking, onBookingClick }: BookingDisplayProps)
 
   return (
     <div
-      className="absolute left-0 w-11/12 px-1.5 sm:px-2 cursor-pointer overflow-hidden z-20 rounded-md ml-px"
+      className="absolute left-0 w-11/12 px-1.5 sm:px-2 cursor-pointer overflow-hidden z-0 rounded-md ml-px"
       style={{
         top: `${top + 1}px`,
         height: `${height - 2}px`,

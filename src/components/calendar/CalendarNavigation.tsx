@@ -27,7 +27,7 @@ export function CalendarNavigation({ selectedDate, onDateChange }: CalendarNavig
   };
 
   return (
-    <div className="sticky top-[72px] z-20 flex items-center justify-between p-4 border-b" style={{ borderColor: 'hsl(217 6% 26% / 1)', backgroundColor: 'hsl(240 3% 8%)' }}>
+    <div className="sticky top-[72px] z-20 flex items-center justify-between p-4 border-b h-[72px] min-h-[72px]" style={{ borderColor: 'hsl(217 6% 26% / 1)', backgroundColor: 'hsl(240 3% 8%)' }}>
       <div className="flex items-center gap-4">
         <button
           onClick={() => onDateChange(new Date())}
