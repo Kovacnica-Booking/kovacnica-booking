@@ -16,7 +16,7 @@ export function CalendarHeader({ days }: CalendarHeaderProps) {
   };
 
   return (
-    <div className="grid grid-cols-[2.5rem_repeat(7,1fr)] sm:grid-cols-[4rem_repeat(7,1fr)] border-b" style={{ borderColor: 'hsl(217 6% 26% / 1)' }}>
+    <div className="sticky top-[144px] z-10 grid grid-cols-[2.5rem_repeat(7,1fr)] sm:grid-cols-[4rem_repeat(7,1fr)] border-b" style={{ borderColor: 'hsl(217 6% 26% / 1)', backgroundColor: 'hsl(240 3% 8%)' }}>
       <div />
       {days.map(day => (
         <div

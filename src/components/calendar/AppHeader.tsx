@@ -13,7 +13,7 @@ export function AppHeader({ selectedRoom, onRoomChange }: AppHeaderProps) {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full p-4 border-b" style={{ borderColor: 'hsl(217 6% 26% / 1)', backgroundColor: 'hsl(240 3% 11%)' }}>
+    <div className="sticky top-0 z-30 w-full p-4 border-b" style={{ borderColor: 'hsl(217 6% 26% / 1)', backgroundColor: 'hsl(240 3% 11%)' }}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Logo />
