@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+/*import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NumberInput } from '@/components/ui/number-input';
 
@@ -94,3 +94,4 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
     </div>
   );
 }
+*/
