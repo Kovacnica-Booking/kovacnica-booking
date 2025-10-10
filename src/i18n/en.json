@@ -22,7 +22,8 @@
     "enterPin": "Enter PIN (4 digits)",
     "enterPinToManage": "Enter PIN to manage booking",
     "enterPinToConfirm": "Enter PIN to confirm changes",
-    "incorrectPin": "Incorrect PIN"
+    "incorrectPin": "Incorrect PIN",
+    "slotBooked": "This slot has just been booked by someone else"
   },
   "auth": {
     "enterPassword": "Enter Password",

@@ -22,7 +22,8 @@
     "enterPin": "Vnesi PIN (4 številke)",
     "enterPinToManage": "Vnesi PIN za upravljanje rezervacije",
     "enterPinToConfirm": "Vnesi PIN za potrditev sprememb",
-    "incorrectPin": "Napačen PIN"
+    "incorrectPin": "Napačen PIN",
+    "slotBooked": "Ta termin je bil pravkar rezerviran"
   },
   "auth": {
     "enterPassword": "Vnesi geslo",

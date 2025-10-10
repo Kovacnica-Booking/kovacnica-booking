@@ -1,22 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { startOfWeek, addDays, format } from 'date-fns';
 import { supabase } from '@/supabase';
 import type { Booking } from '@/types';
+import { useAutoRefresh } from './useAutoRefresh';
 
-export function useBookings(selectedDate: Date) {
+export function useBookings(selectedDate: Date, onConflictDetected?: (bookingIds: string[]) => void) {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const previousBookingsRef = useRef<Booking[]>([]);
 
   useEffect(() => {
     fetchBookings();
   }, [selectedDate]);
 
-  const fetchBookings = async () => {
+  const fetchBookings = useCallback(async (silent = false) => {
     try {
-      setIsLoading(true);
+      if (!silent) {
+        setIsLoading(true);
+      }
       setError(null);
-      
+
       const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
       const weekEnd = addDays(weekStart, 7);
 
@@ -43,16 +47,34 @@ export function useBookings(selectedDate: Date) {
         bookings: data
       });
 
-      setBookings(data || []);
+      const newBookings = data || [];
+
+      if (silent && previousBookingsRef.current.length > 0 && onConflictDetected) {
+        const previousIds = new Set(previousBookingsRef.current.map(b => b.id));
+        const newBookingIds = newBookings
+          .filter(b => !previousIds.has(b.id))
+          .map(b => b.id);
+
+        if (newBookingIds.length > 0) {
+          onConflictDetected(newBookingIds);
+        }
+      }
+
+      previousBookingsRef.current = newBookings;
+      setBookings(newBookings);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch bookings';
       console.error('Error fetching bookings:', err);
       setError(errorMessage);
-      setBookings([]);
+      if (!silent) {
+        setBookings([]);
+      }
     } finally {
-      setIsLoading(false);
+      if (!silent) {
+        setIsLoading(false);
+      }
     }
-  };
+  }, [selectedDate, onConflictDetected]);
 
   const createBooking = async (newBooking: Omit<Booking, 'id' | 'created_at'>) => {
     try {
@@ -142,6 +164,12 @@ export function useBookings(selectedDate: Date) {
       return false;
     }
   };
+
+  const silentRefresh = useCallback(() => {
+    fetchBookings(true);
+  }, [fetchBookings]);
+
+  useAutoRefresh(silentRefresh, true);
 
   return {
     bookings,
