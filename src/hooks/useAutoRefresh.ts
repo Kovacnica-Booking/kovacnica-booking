@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useTabVisibility } from './useTabVisibility';
 
-const REFRESH_INTERVAL = 5000;
+const REFRESH_INTERVAL = 2000;
 
 export function useAutoRefresh(callback: () => void, enabled: boolean = true) {
   const isTabVisible = useTabVisibility();

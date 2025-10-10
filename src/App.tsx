@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppHeader } from '@/components/calendar/AppHeader';
 import { CalendarNavigation } from '@/components/calendar/CalendarNavigation';
@@ -6,7 +6,6 @@ import { Calendar } from '@/components/Calendar';
 import { BookingModal } from '@/components/BookingModal';
 import { BookingDetails } from '@/components/BookingDetails';
 import { PasswordModal } from '@/components/PasswordModal';
-import { Toast } from '@/components/Toast';
 import { useBookings } from '@/hooks/useBookings';
 import type { Booking, Room, TimeRange } from '@/types';
 
@@ -19,13 +18,8 @@ function App() {
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [modalPosition, setModalPosition] = useState<{ top: number; left: number; right: number; width: number } | null>(null);
   const [previewTimeRange, setPreviewTimeRange] = useState<TimeRange | null>(null);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  const handleConflictDetected = useCallback((bookingIds: string[]) => {
-    setToastMessage(t('bookings.slotBooked'));
-  }, [t]);
-
-  const { bookings, createBooking, deleteBooking, updateBooking } = useBookings(selectedDate, handleConflictDetected);
+  const { bookings, createBooking, deleteBooking, updateBooking } = useBookings(selectedDate);
 
   const handleTimeRangeSelect = (range: TimeRange, position: { top: number; left: number; right: number; width: number }) => {
     setSelectedTimeRange(range);
@@ -131,13 +125,6 @@ function App() {
 
       {!isAuthenticated && (
         <PasswordModal onAuthenticate={() => setIsAuthenticated(true)} />
-      )}
-
-      {toastMessage && (
-        <Toast
-          message={toastMessage}
-          onClose={() => setToastMessage(null)}
-        />
       )}
     </div>
   );

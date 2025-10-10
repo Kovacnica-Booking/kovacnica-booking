@@ -1,14 +1,13 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { startOfWeek, addDays, format } from 'date-fns';
 import { supabase } from '@/supabase';
 import type { Booking } from '@/types';
 import { useAutoRefresh } from './useAutoRefresh';
 
-export function useBookings(selectedDate: Date, onConflictDetected?: (bookingIds: string[]) => void) {
+export function useBookings(selectedDate: Date) {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const previousBookingsRef = useRef<Booking[]>([]);
 
   useEffect(() => {
     fetchBookings();
@@ -49,18 +48,6 @@ export function useBookings(selectedDate: Date, onConflictDetected?: (bookingIds
 
       const newBookings = data || [];
 
-      if (silent && previousBookingsRef.current.length > 0 && onConflictDetected) {
-        const previousIds = new Set(previousBookingsRef.current.map(b => b.id));
-        const newBookingIds = newBookings
-          .filter(b => !previousIds.has(b.id))
-          .map(b => b.id);
-
-        if (newBookingIds.length > 0) {
-          onConflictDetected(newBookingIds);
-        }
-      }
-
-      previousBookingsRef.current = newBookings;
       setBookings(newBookings);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch bookings';
@@ -74,7 +61,7 @@ export function useBookings(selectedDate: Date, onConflictDetected?: (bookingIds
         setIsLoading(false);
       }
     }
-  }, [selectedDate, onConflictDetected]);
+  }, [selectedDate]);
 
   const createBooking = async (newBooking: Omit<Booking, 'id' | 'created_at'>) => {
     try {
