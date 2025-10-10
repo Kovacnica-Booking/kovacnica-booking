@@ -23,7 +23,7 @@
     "enterPinToManage": "Vnesi PIN za upravljanje rezervacije",
     "enterPinToConfirm": "Vnesi PIN za potrditev sprememb",
     "incorrectPin": "Napačen PIN",
-    "slotBooked": "Ta termin je bil pravkar rezerviran"
+    "slotBooked": "Nov termin je bil pravkar rezerviran"
   },
   "auth": {
     "enterPassword": "Vnesi geslo",
