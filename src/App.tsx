@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppHeader } from '@/components/calendar/AppHeader';
 import { CalendarNavigation } from '@/components/calendar/CalendarNavigation';
@@ -9,9 +9,18 @@ import { PasswordModal } from '@/components/PasswordModal';
 import { useBookings } from '@/hooks/useBookings';
 import type { Booking, Room, TimeRange } from '@/types';
 
+const AUTH_TIMEOUT_MS = 5 * 60 * 1000;
+const AUTH_TIMESTAMP_KEY = 'authTimestamp';
+
 function App() {
   const { t } = useTranslation();
-  const [isAuthenticated, setIsAuthenticated] = useState(false); //Enabling and disabling password login
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const timestamp = localStorage.getItem(AUTH_TIMESTAMP_KEY);
+    if (!timestamp) return false;
+
+    const elapsed = Date.now() - parseInt(timestamp, 10);
+    return elapsed < AUTH_TIMEOUT_MS;
+  });
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedRoom, setSelectedRoom] = useState<Room>('Sejna 1');
   const [selectedTimeRange, setSelectedTimeRange] = useState<TimeRange | null>(null);
@@ -20,6 +29,32 @@ function App() {
   const [previewTimeRange, setPreviewTimeRange] = useState<TimeRange | null>(null);
 
   const { bookings, createBooking, deleteBooking, updateBooking } = useBookings(selectedDate);
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    const checkAuth = () => {
+      const timestamp = localStorage.getItem(AUTH_TIMESTAMP_KEY);
+      if (!timestamp) {
+        setIsAuthenticated(false);
+        return;
+      }
+
+      const elapsed = Date.now() - parseInt(timestamp, 10);
+      if (elapsed >= AUTH_TIMEOUT_MS) {
+        setIsAuthenticated(false);
+        localStorage.removeItem(AUTH_TIMESTAMP_KEY);
+      }
+    };
+
+    const intervalId = setInterval(checkAuth, 1000);
+    return () => clearInterval(intervalId);
+  }, [isAuthenticated]);
+
+  const handleAuthenticate = () => {
+    localStorage.setItem(AUTH_TIMESTAMP_KEY, Date.now().toString());
+    setIsAuthenticated(true);
+  };
 
   const handleTimeRangeSelect = (range: TimeRange, position: { top: number; left: number; right: number; width: number }) => {
     setSelectedTimeRange(range);
@@ -124,7 +159,7 @@ function App() {
       )}
 
       {!isAuthenticated && (
-        <PasswordModal onAuthenticate={() => setIsAuthenticated(true)} />
+        <PasswordModal onAuthenticate={handleAuthenticate} />
       )}
     </div>
   );
