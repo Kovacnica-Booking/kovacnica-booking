@@ -9,7 +9,7 @@ import { useBookings } from '@/hooks/useBookings';
 import type { Booking, Room, TimeRange } from '@/types';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true); //Enabling and disabling password login
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedRoom, setSelectedRoom] = useState<Room>('Sejna 1');
   const [selectedTimeRange, setSelectedTimeRange] = useState<TimeRange | null>(null);
