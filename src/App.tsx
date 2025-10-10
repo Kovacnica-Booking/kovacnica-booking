@@ -11,7 +11,7 @@ import type { Booking, Room, TimeRange } from '@/types';
 
 function App() {
   const { t } = useTranslation();
-  const [isAuthenticated, setIsAuthenticated] = useState(true); //Enabling and disabling password login
+  const [isAuthenticated, setIsAuthenticated] = useState(false); //Enabling and disabling password login
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedRoom, setSelectedRoom] = useState<Room>('Sejna 1');
   const [selectedTimeRange, setSelectedTimeRange] = useState<TimeRange | null>(null);
