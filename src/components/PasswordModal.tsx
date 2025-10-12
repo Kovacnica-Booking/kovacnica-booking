@@ -31,7 +31,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
   }, [pin, onAuthenticate]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center text-white" style={{ backgroundColor: 'hsl(240 3% 11%)' }}>
+    <div className="fixed inset-0 flex items-center justify-center text-white" style={{ backgroundColor: 'hsl(240 3% 8%)' }}>
       <div className="absolute top-4 right-4">
         <LanguagePicker />
       </div>
