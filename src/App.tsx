@@ -9,7 +9,7 @@ import { PasswordModal } from '@/components/PasswordModal';
 import { useBookings } from '@/hooks/useBookings';
 import type { Booking, Room, TimeRange } from '@/types';
 
-const AUTH_TIMEOUT_MS = 5 * 60 * 1000;
+const AUTH_TIMEOUT_MS = 5 * 60 * 1000; //Replace with these to change to 6 months: 180 * 24 * 60 * 60 * 1000;
 const AUTH_TIMESTAMP_KEY = 'authTimestamp';
 
 function App() {
