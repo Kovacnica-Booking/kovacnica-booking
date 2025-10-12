@@ -16,7 +16,7 @@ function App() {
   const { t } = useTranslation();
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const timestamp = localStorage.getItem(AUTH_TIMESTAMP_KEY);
-    if (!timestamp) return true;
+    if (!timestamp) return false;
 
     const elapsed = Date.now() - parseInt(timestamp, 10);
     return elapsed < AUTH_TIMEOUT_MS;
