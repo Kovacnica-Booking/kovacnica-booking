@@ -34,7 +34,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
           {t('auth.enterPassword')}
         </h2>
 
-        <div className="flex mt-2 flex-col items-center">
+        <div className="flex mt-4 flex-col items-center">
           <NumberInput
             key={key}
             value={pin}
