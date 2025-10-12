@@ -27,7 +27,7 @@
   },
   "auth": {
     "enterPassword": "Vnesi geslo",
-    "passwordRequired": "Prosimo, vnesite geslo za dostop do koledarja",
+    "passwordRequired": "Ne skrbi, koledar zahteva geslo vsakih 6 mesecev :)",
     "password": "Geslo",
     "incorrectPassword": "Napačno geslo"
   },
