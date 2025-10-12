@@ -38,7 +38,9 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
         </p>
 
         <div className="flex flex-col items-center">
+          <label className="block text-sm font-medium text-gray-300 mb-4">
             {t('auth.password')}
+          </label>
           <NumberInput
             key={key}
             value={pin}
