@@ -33,7 +33,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
         <h2 className="text-2xl font-semibold mb-3">
           {t('auth.enterPassword')}
         </h2>
-        <p className="text-gray-400 mb-8 text-center">
+        <p className="text-gray-400 text-sm mb-8 text-center">
           {t('auth.passwordRequired')}
         </p>
 
