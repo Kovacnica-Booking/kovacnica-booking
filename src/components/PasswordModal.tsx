@@ -29,16 +29,11 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
   }, [pin, onAuthenticate]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center text-white">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url('/ChatGPT Image Oct 12, 2025, 05_56_07 PM.png')` }}
-      />
-      <div className="absolute inset-0 bg-black bg-opacity-80" />
-      <div className="absolute top-4 right-4 z-10">
+    <div className="fixed inset-0 bg-black flex items-center justify-center text-white">
+      <div className="absolute top-4 right-4">
         <LanguagePicker />
       </div>
-      <div className="flex flex-col items-center px-4 relative z-10">
+      <div className="flex flex-col items-center px-4">
         <h2 className="text-2xl font-semibold mb-3">
           {t('auth.enterPassword')}
         </h2>
