@@ -30,7 +30,6 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
   }, [pin, onAuthenticate]);
 
   return (
-    <div className="fixed inset-0 bg-black flex items-center justify-center text-white">
       <div className="absolute top-4 right-4">
         <LanguagePicker />
       </div>
