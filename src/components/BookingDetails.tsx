@@ -191,7 +191,7 @@ export function BookingDetails({ booking, bookings, onClose, onDelete, onUpdate 
           )}
           <button 
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-200 p-1 hover:bg-gray-700 rounded"
+            className="text-gray-400 hover:text-white p-1 hover:bg-[#333333] rounded-full"
             tabIndex={5}
           >
             <X size={20} />
