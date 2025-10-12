@@ -144,7 +144,7 @@ export function Select({ value, onChange, options, className, disabled, tabIndex
                     className={cn(
                       "w-full px-3 py-2 text-left transition-colors",
                       "hover:bg-[#222222]",
-                      "focus:outline-none focus:bg-[#222222]",
+                      "focus:outline-none focus:bg-[#111111]",
                       option.value === value && "bg-blue-500/20 text-blue-400",
                       option.disabled && "opacity-50 cursor-not-allowed",
                       activeIndex === index && "bg-[#333333]"
