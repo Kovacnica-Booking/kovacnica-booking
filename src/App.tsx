@@ -115,6 +115,10 @@ function App() {
     setPreviewTimeRange(null);
   };
 
+  if (!isAuthenticated) {
+    return <PasswordModal onAuthenticate={handleAuthenticate} />;
+  }
+
   return (
     <div className="min-h-screen flex flex-col text-white" style={{ backgroundColor: 'hsl(240 3% 8%)' }}>
       <AppHeader
@@ -156,10 +160,6 @@ function App() {
           onDelete={handleDeleteBooking}
           onUpdate={handleUpdateBooking}
         />
-      )}
-
-      {!isAuthenticated && (
-        <PasswordModal onAuthenticate={handleAuthenticate} />
       )}
     </div>
   );
