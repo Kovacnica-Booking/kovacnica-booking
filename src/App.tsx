@@ -7,6 +7,7 @@ import { BookingModal } from '@/components/BookingModal';
 import { BookingDetails } from '@/components/BookingDetails';
 import { PasswordModal } from '@/components/PasswordModal';
 import { useBookings } from '@/hooks/useBookings';
+import { useTabVisibility } from '@/hooks/useTabVisibility';
 import type { Booking, Room, TimeRange } from '@/types';
 
 const AUTH_TIMEOUT_MS = 1 * 60 * 1000; //Replace with these to change to 6 months: 180 * 24 * 60 * 60 * 1000;
@@ -14,6 +15,7 @@ const AUTH_TIMESTAMP_KEY = 'authTimestamp';
 
 function App() {
   const { t } = useTranslation();
+  const isTabVisible = useTabVisibility();
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const timestamp = localStorage.getItem(AUTH_TIMESTAMP_KEY);
     if (!timestamp) return false;
@@ -31,25 +33,20 @@ function App() {
   const { bookings, createBooking, deleteBooking, updateBooking } = useBookings(selectedDate);
 
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!isAuthenticated || !isTabVisible) return;
 
-    const checkAuth = () => {
-      const timestamp = localStorage.getItem(AUTH_TIMESTAMP_KEY);
-      if (!timestamp) {
-        setIsAuthenticated(false);
-        return;
-      }
+    const timestamp = localStorage.getItem(AUTH_TIMESTAMP_KEY);
+    if (!timestamp) {
+      setIsAuthenticated(false);
+      return;
+    }
 
-      const elapsed = Date.now() - parseInt(timestamp, 10);
-      if (elapsed >= AUTH_TIMEOUT_MS) {
-        setIsAuthenticated(false);
-        localStorage.removeItem(AUTH_TIMESTAMP_KEY);
-      }
-    };
-
-    const intervalId = setInterval(checkAuth, 1000);
-    return () => clearInterval(intervalId);
-  }, [isAuthenticated]);
+    const elapsed = Date.now() - parseInt(timestamp, 10);
+    if (elapsed >= AUTH_TIMEOUT_MS) {
+      setIsAuthenticated(false);
+      localStorage.removeItem(AUTH_TIMESTAMP_KEY);
+    }
+  }, [isAuthenticated, isTabVisible]);
 
   const handleAuthenticate = () => {
     localStorage.setItem(AUTH_TIMESTAMP_KEY, Date.now().toString());
