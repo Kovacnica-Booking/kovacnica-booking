@@ -36,7 +36,7 @@ function App() {
     const checkAuth = () => {
       const timestamp = localStorage.getItem(AUTH_TIMESTAMP_KEY);
       if (!timestamp) {
-        setIsAuthenticated(true);
+        setIsAuthenticated(false);
         return;
       }
 
