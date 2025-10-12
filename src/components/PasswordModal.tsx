@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NumberInput } from '@/components/ui/number-input';
+import { LanguagePicker } from '@/components/LanguagePicker';
 
 interface PasswordModalProps {
   onAuthenticate: () => void;
@@ -29,6 +30,9 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black flex items-center justify-center text-white">
+      <div className="absolute top-4 right-4">
+        <LanguagePicker />
+      </div>
       <div className="flex flex-col items-center px-4">
         <h2 className="text-2xl font-semibold mb-3">
           {t('auth.enterPassword')}
