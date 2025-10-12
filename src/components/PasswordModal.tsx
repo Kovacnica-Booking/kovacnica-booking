@@ -36,7 +36,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
       </div>
       <div className="flex flex-col items-center px-4">
         <h2 className="text-2xl font-semibold mb-3">
-          {t('auth.enterPassword')}
+          {t('auth.title')}
         </h2>
 
         <div className="flex mt-4 flex-col items-center">
