@@ -49,7 +49,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
           )}
         </div>
         
-        <p className="text-gray-400 mt-2 text-sm mb-8 text-center">
+        <p className="text-gray-400 mt-2 text-s mb-8 text-center">
           {t('auth.passwordRequired')}
           
         </p>
