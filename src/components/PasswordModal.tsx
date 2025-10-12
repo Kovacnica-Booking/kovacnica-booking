@@ -33,7 +33,6 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
       <div className="absolute top-4 right-4">
         <LanguagePicker />
       </div>
-      <Logo />
       <div className="flex flex-col items-center px-4">
         <h2 className="text-2xl font-semibold mb-3">
           {t('auth.enterPassword')}
