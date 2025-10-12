@@ -26,7 +26,7 @@
     "slotBooked": "This slot has just been booked by someone else"
   },
   "auth": {
-    "enterPassword": "Enter Password",
+    "title": "Enter Password",
     "passwordRequired": "Please enter the password to access the calendar",
     "password": "Password",
     "incorrectPassword": "Incorrect password"
