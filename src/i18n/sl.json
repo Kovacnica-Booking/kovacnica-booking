@@ -27,7 +27,7 @@
   },
   "auth": {
     "enterPassword": "Vnesi geslo",
-    "passwordRequired": "Ne skrbi, koledar zahteva geslo vsakih 6 mesecev :)",
+    "passwordRequired": "Če se gesla ne spomniš, se obrni na našo Viber skupino.",
     "password": "Geslo",
     "incorrectPassword": "Napačno geslo"
   },
