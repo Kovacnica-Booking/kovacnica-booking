@@ -85,7 +85,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
                 style={{ backgroundColor: 'transparent' }}
               />
               {showPassword && (
-                <Check className="absolute inset-0 w-4 h-4 top-2 text-white pointer-events-none" strokeWidth={4} />
+                <Check className="absolute inset-0 w-3 h-3 top-2 text-white pointer-events-none" strokeWidth={4} />
               )}
             </div>
             <span className="text-gray-400" style={{ fontSize: '14px' }}>
