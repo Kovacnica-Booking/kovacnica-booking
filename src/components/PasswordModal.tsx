@@ -15,6 +15,11 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!password) {
+      return;
+    }
+
     if (password === '1234') {
       onAuthenticate();
     } else {
@@ -46,11 +51,13 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder={t('auth.passwordPlaceholder')}
             autoFocus
-            className={`w-full px-4 py-3 text-center text-lg font-medium rounded-lg transition-colors outline-none ${
+            required
+            className={`w-full px-4 py-3 text-center text-lg font-medium rounded-lg transition-colors outline-none border ${
               error
-                ? 'border border-red-500 text-red-400'
-                : 'border-0 hover:border hover:border-gray-500 focus:border-2 focus:border-white text-white'
+                ? 'border-red-500 text-red-400'
+                : 'border-transparent hover:border-gray-500 focus:border-2 focus:border-white text-white'
             }`}
             style={{ backgroundColor: '#333333' }}
           />

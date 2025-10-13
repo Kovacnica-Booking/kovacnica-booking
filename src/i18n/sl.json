@@ -30,6 +30,7 @@
     "title": "Odkleni <span>Sobačnico</span>",
     "passwordRequired": "Geslo najdeš v naši Viber skupini",
     "password": "Geslo",
+    "passwordPlaceholder": "Vnesi geslo",
     "incorrectPassword": "Napačno geslo"
   },
   "months": {

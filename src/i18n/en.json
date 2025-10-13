@@ -30,6 +30,7 @@
     "title": "Unlock <span>Sobačnica</span>",
     "passwordRequired": "Ask your coworker for the password",
     "password": "Password",
+    "passwordPlaceholder": "Enter password",
     "incorrectPassword": "Incorrect password"
   },
   "months": {
