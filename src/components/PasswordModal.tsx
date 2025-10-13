@@ -70,7 +70,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
         />
 
         <form onSubmit={handleSubmit} className="flex mt-10 flex-col items-center w-400">
-          <div className="flex items-center gap-4 w-full">
+          <div className="flex items-center w-full" style={{ gap: '8px' }}>
             <input
               type={showPassword ? "text" : "password"}
               value={password}
@@ -97,7 +97,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               <div
                 ref={refs.setFloating}
                 style={floatingStyles}
-                className="z-50 px-3 py-2 text-xs text-white bg-gray-800 rounded-lg shadow-lg max-w-xs"
+                className="z-50 px-3 py-1.5 text-xs text-white bg-[#1a1a1a] rounded-md shadow-lg border border-[#333333] whitespace-nowrap pointer-events-none"
               >
                 {t('auth.passwordRequired')}
               </div>
