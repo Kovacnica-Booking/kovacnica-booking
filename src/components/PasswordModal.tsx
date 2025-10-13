@@ -45,7 +45,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
           } as React.CSSProperties}
         />
 
-        <div className="flex mt-6 flex-col items-center">
+        <div className="flex mt-8 flex-col items-center">
           <NumberInput
             key={key}
             value={pin}
