@@ -1,5 +1,5 @@
 import React from 'react';
-import { format, parseISO, differenceInMinutes } from 'date-fns';
+import { format, parseISO, differenceInMinutes, isBefore } from 'date-fns';
 import type { Booking } from '@/types';
 
 interface BookingDisplayProps {
@@ -18,9 +18,13 @@ export function BookingDisplay({ booking, onBookingClick, isMobile = false }: Bo
   const cellHeight = isMobile ? 64 : 48;
   const top = (startHour - 7) * cellHeight + startMinute * (cellHeight / 60);
   const height = duration * (cellHeight / 60);
-  
+
   const isShortBooking = duration <= 30;
   const timePart = `${format(start, 'HH:mm')} - ${format(end, 'HH:mm')}`;
+
+  const now = new Date();
+  const isPastBooking = isBefore(end, now);
+  const bookingColor = isPastBooking ? 'hsl(160, 34%, 21%)' : 'hsl(158 48% 51%)';
 
   return (
     <div
@@ -28,7 +32,7 @@ export function BookingDisplay({ booking, onBookingClick, isMobile = false }: Bo
       style={{
         top: `${top + 1}px`,
         height: `${height - 2}px`,
-        backgroundColor: 'hsl(158 48% 51%)',
+        backgroundColor: bookingColor,
         color: 'hsl(158 3% 8%)'
       }}
       onClick={(e) => {

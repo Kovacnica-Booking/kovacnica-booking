@@ -23,7 +23,8 @@
     "enterPinToManage": "Vnesi PIN za upravljanje rezervacije",
     "enterPinToConfirm": "Vnesi PIN za potrditev sprememb",
     "incorrectPin": "Napačen PIN",
-    "slotBooked": "Nov termin je bil pravkar rezerviran"
+    "slotBooked": "Nov termin je bil pravkar rezerviran",
+    "pastSlotTooltip": "Potuješ skozi čas? 🙃"
   },
   "auth": {
     "title": "Rezervacija sejnih sob",

@@ -69,12 +69,16 @@ export function TimeColumn({
             onDragStart={() => onDragStart(day, hour, true)}
             position="top"
             isMobile={isMobile}
+            day={day}
+            hour={hour}
           />
           <TimeSlot
             isInDragRange={isInDragRange(day, hour, false)}
             onDragStart={() => onDragStart(day, hour, false)}
             position="bottom"
             isMobile={isMobile}
+            day={day}
+            hour={hour}
           />
         </div>
       ))}

@@ -23,7 +23,8 @@
     "enterPinToManage": "Enter PIN to manage booking",
     "enterPinToConfirm": "Enter PIN to confirm changes",
     "incorrectPin": "Incorrect PIN",
-    "slotBooked": "This slot has just been booked by someone else"
+    "slotBooked": "This slot has just been booked by someone else",
+    "pastSlotTooltip": "You a time traveler? 🙃"
   },
   "auth": {
     "title": "Enter Password",
