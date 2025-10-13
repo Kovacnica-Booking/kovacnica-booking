@@ -76,7 +76,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
             style={{ backgroundColor: '#333333' }}
           />
           <label className="flex items-center gap-2 self-start cursor-pointer" style={{ marginTop: '8px' }}>
-            <div className="relative w-4 h-4">
+            <div className="relative w-4 h-4 self-start">
               <input
                 type="checkbox"
                 checked={showPassword}
