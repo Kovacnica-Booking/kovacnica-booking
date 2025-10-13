@@ -25,6 +25,7 @@ export function BookingDisplay({ booking, onBookingClick, isMobile = false }: Bo
   const now = new Date();
   const isPastBooking = isBefore(end, now);
   const bookingColor = isPastBooking ? 'hsl(160, 34%, 21%)' : 'hsl(158 48% 51%)';
+  const textColor = isPastBooking ? 'hsl(180, 11%, 68%)' : 'hsl(158 3% 8%)';
 
   return (
     <div
@@ -33,7 +34,7 @@ export function BookingDisplay({ booking, onBookingClick, isMobile = false }: Bo
         top: `${top + 1}px`,
         height: `${height - 2}px`,
         backgroundColor: bookingColor,
-        color: 'hsl(158 3% 8%)'
+        color: textColor
       }}
       onClick={(e) => {
         e.stopPropagation();
