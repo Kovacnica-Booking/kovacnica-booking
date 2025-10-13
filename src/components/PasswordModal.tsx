@@ -58,7 +58,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
           } as React.CSSProperties}
         />
 
-        <form onSubmit={handleSubmit} className="flex mt-10 flex-col items-center w-s">
+        <form onSubmit={handleSubmit} className="flex mt-10 flex-col items-center w-sm">
           <input
             type="password"
             value={password}
