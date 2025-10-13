@@ -79,7 +79,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               type="checkbox"
               checked={showPassword}
               onChange={(e) => setShowPassword(e.target.checked)}
-              className="w-4 h-4 cursor-pointer"
+              className="w-4 h-4 cursor-pointer accent-white"
               style={{ backgroundColor: '#333333' }}
             />
             <span className="text-gray-400" style={{ fontSize: '14px' }}>
