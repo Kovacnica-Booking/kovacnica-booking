@@ -17,7 +17,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
 
   useEffect(() => {
     if (pin.length === 4) {
-      if (pin === 'sobaCajt!') {
+      if (pin === '1234') {
         onAuthenticate();
       } else {
         setError(true);
