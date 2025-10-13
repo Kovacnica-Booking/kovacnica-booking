@@ -35,7 +35,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
       <div className="absolute top-4 right-4">
         <LanguagePicker />
       </div>
-      <div className="flex flex-col items-center px-4" style="width: 4em; height: 4em;"/>
+      <div className="flex flex-col items-center px-4 w-16 h-16"/>
         <Logo />
         <h2
           className="text-3xl text-gray-400 font-semibold mb-3 mt-4"
