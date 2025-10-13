@@ -35,10 +35,10 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
       <div className="absolute top-4 right-4">
         <LanguagePicker />
       </div>
-      <div className="flex flex-col items-center px-4"/>
+      <div className="flex flex-col items-center px-4">
         <Logo />
         <h2
-          className="text-3xl text-gray-400 font-semibold mb-3 mt-4"
+          className="text-4xl text-gray-400 font-semibold mb-3 mt-4"
           dangerouslySetInnerHTML={{ __html: t('auth.title') }}
           style={{
             '--highlight-color': 'hsl(0, 0%, 100%)'
