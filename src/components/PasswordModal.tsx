@@ -103,7 +103,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               </div>
             )}
           </div>
-          <label className="flex items-center gap-2 self-start cursor-pointer" style={{ marginTop: '8px' }}>
+          <label className="flex items-center gap-2 self-start cursor-pointer" style={{ marginTop: '12px' }}>
             <div className="relative w-4 h-4 self-start">
               <input
                 type="checkbox"
@@ -113,7 +113,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
                 style={{ backgroundColor: 'transparent' }}
               />
               {showPassword && (
-                <Check className="absolute inset-x-0.5 top-2 w-3 h-3 text-white pointer-events-none" strokeWidth={4} />
+                <Check className="absolute inset-x-0.5 top-1 w-3 h-3 text-white pointer-events-none" strokeWidth={4} />
               )}
             </div>
             <span className="text-gray-400" style={{ fontSize: '14px' }}>
