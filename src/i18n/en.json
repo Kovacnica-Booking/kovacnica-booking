@@ -27,8 +27,8 @@
     "pastSlotTooltip": "You a time traveler? 🙃"
   },
   "auth": {
-    "title": "Enter Password",
-    "passwordRequired": "Please enter the password to access the calendar",
+    "title": "Unlock Sobačnica",
+    "passwordRequired": "Ask your coworker for the password",
     "password": "Password",
     "incorrectPassword": "Incorrect password"
   },

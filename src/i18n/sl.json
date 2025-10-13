@@ -27,8 +27,8 @@
     "pastSlotTooltip": "Potuješ skozi čas? 🙃"
   },
   "auth": {
-    "title": "Rezervacija sejnih sob",
-    "passwordRequired": "Če se gesla ne spomniš, se obrni na našo Viber skupino.",
+    "title": "Odkleni Sobačnico",
+    "passwordRequired": "Geslo najdeš v naši Viber skupini",
     "password": "Geslo",
     "incorrectPassword": "Napačno geslo"
   },
