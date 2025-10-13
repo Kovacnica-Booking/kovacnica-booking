@@ -1,10 +1,11 @@
 import React from 'react';
-import { format, parseISO, isSameDay } from 'date-fns';
+import { format, parseISO, isSameDay, isToday } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { BookingDisplay } from './BookingDisplay';
 import { TimeSlot } from './TimeSlot';
 import { PreviewTimeRange } from './PreviewTimeRange';
 import { DragOverlay } from './DragOverlay';
+import { CurrentTimeLine } from './CurrentTimeLine';
 import type { Booking, TimeRange } from '@/types';
 import type { DragState } from '@/hooks/useCalendarDrag';
 
@@ -104,6 +105,8 @@ export function TimeColumn({
       {previewTimeRange && isSameDay(previewTimeRange.start, day) && (
         <PreviewTimeRange timeRange={previewTimeRange} isValid={true} isMobile={isMobile} />
       )}
+
+      {isToday(day) && <CurrentTimeLine isMobile={isMobile} />}
     </div>
   );
 }
