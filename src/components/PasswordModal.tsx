@@ -37,9 +37,13 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
       </div>
       <div className="flex flex-col items-center px-4">
         <Logo />
-        <h2 className="text-2xl font-semibold mb-3 mt-4">
-          {t('auth.title')}
-        </h2>
+        <h2
+          className="text-2xl font-semibold mb-3 mt-4"
+          dangerouslySetInnerHTML={{ __html: t('auth.title') }}
+          style={{
+            '--highlight-color': 'hsl(142, 76%, 36%)'
+          } as React.CSSProperties}
+        />
 
         <div className="flex mt-4 flex-col items-center">
           <NumberInput

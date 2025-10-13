@@ -27,7 +27,7 @@
     "pastSlotTooltip": "Potuješ skozi čas? 🙃"
   },
   "auth": {
-    "title": "Odkleni Sobačnico",
+    "title": "Odkleni <span>Sobačnico</span>",
     "passwordRequired": "Geslo najdeš v naši Viber skupini",
     "password": "Geslo",
     "incorrectPassword": "Napačno geslo"

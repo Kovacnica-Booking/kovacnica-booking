@@ -27,7 +27,7 @@
     "pastSlotTooltip": "You a time traveler? 🙃"
   },
   "auth": {
-    "title": "Unlock Sobačnica",
+    "title": "Unlock <span>Sobačnica</span>",
     "passwordRequired": "Ask your coworker for the password",
     "password": "Password",
     "incorrectPassword": "Incorrect password"
