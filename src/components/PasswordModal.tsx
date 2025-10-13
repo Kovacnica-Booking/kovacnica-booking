@@ -47,12 +47,12 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoFocus
-            className={`w-full px-4 py-3 text-center text-lg font-medium rounded-lg transition-colors ${
+            className={`w-full px-4 py-3 text-center text-lg font-medium rounded-lg transition-colors outline-none ${
               error
-                ? 'bg-red-950/30 border-2 border-red-500 text-red-400'
-                : 'bg-gray-800/50 border-2 border-gray-700 text-white focus:border-gray-500'
-            } outline-none`}
-            style={{ backgroundColor: error ? undefined : 'hsl(240 3% 12%)' }}
+                ? 'border border-red-500 text-red-400'
+                : 'border-0 hover:border hover:border-gray-500 focus:border-2 focus:border-white text-white'
+            }`}
+            style={{ backgroundColor: '#333333' }}
           />
           {error && (
             <p className="text-red-400 text-sm mt-3">
