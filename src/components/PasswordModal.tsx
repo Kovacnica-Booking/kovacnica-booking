@@ -12,6 +12,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
   const { t } = useTranslation();
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (password.length === 4 && password === '1234') {
@@ -60,7 +61,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
 
         <form onSubmit={handleSubmit} className="flex mt-10 flex-col items-center w-400">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder={t('auth.passwordPlaceholder')}
@@ -73,6 +74,17 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
             }`}
             style={{ backgroundColor: '#333333' }}
           />
+          <label className="flex items-center gap-2 self-start cursor-pointer" style={{ marginTop: '8px' }}>
+            <input
+              type="checkbox"
+              checked={showPassword}
+              onChange={(e) => setShowPassword(e.target.checked)}
+              className="w-4 h-4 cursor-pointer accent-white"
+            />
+            <span className="text-gray-400" style={{ fontSize: '14px' }}>
+              {t('auth.showPassword')}
+            </span>
+          </label>
           {error && (
             <p className="text-red-400 text-sm mt-3">
               {t('auth.incorrectPassword')}

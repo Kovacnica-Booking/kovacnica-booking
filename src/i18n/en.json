@@ -31,7 +31,8 @@
     "passwordRequired": "Ask your coworker for the password",
     "password": "Password",
     "passwordPlaceholder": "Enter password",
-    "incorrectPassword": "Incorrect password"
+    "incorrectPassword": "Incorrect password",
+    "showPassword": "Show password"
   },
   "months": {
     "short": {
