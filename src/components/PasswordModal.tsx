@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NumberInput } from '@/components/ui/number-input';
 import { LanguagePicker } from '@/components/LanguagePicker';
 import { Logo } from '@/components/Logo';
 
@@ -11,24 +10,21 @@ interface PasswordModalProps {
 
 export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
   const { t } = useTranslation();
-  const [pin, setPin] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-  const [key, setKey] = useState(0);
 
-  useEffect(() => {
-    if (pin.length === 4) {
-      if (pin === '1234') {
-        onAuthenticate();
-      } else {
-        setError(true);
-        setTimeout(() => {
-          setPin('');
-          setError(false);
-          setKey(prev => prev + 1);
-        }, 1000);
-      }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === '1234') {
+      onAuthenticate();
+    } else {
+      setError(true);
+      setTimeout(() => {
+        setPassword('');
+        setError(false);
+      }, 1000);
     }
-  }, [pin, onAuthenticate]);
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center text-white" style={{ backgroundColor: 'hsl(240 3% 8%)' }}>
@@ -45,20 +41,25 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
           } as React.CSSProperties}
         />
 
-        <div className="flex mt-10 flex-col items-center">
-          <NumberInput
-            key={key}
-            value={pin}
-            onChange={setPin}
-            error={error}
-            tabIndex={1}
+        <form onSubmit={handleSubmit} className="flex mt-10 flex-col items-center w-full max-w-xs">
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoFocus
+            className={`w-full px-4 py-3 text-center text-lg font-medium rounded-lg transition-colors ${
+              error
+                ? 'bg-red-950/30 border-2 border-red-500 text-red-400'
+                : 'bg-gray-800/50 border-2 border-gray-700 text-white focus:border-gray-500'
+            } outline-none`}
+            style={{ backgroundColor: error ? undefined : 'hsl(240 3% 12%)' }}
           />
           {error && (
             <p className="text-red-400 text-sm mt-3">
               {t('auth.incorrectPassword')}
             </p>
           )}
-        </div>
+        </form>
         
         <p className="text-gray-400 mt-5 text-xs mb-8 text-center">
           {t('auth.passwordRequired')}
