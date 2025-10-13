@@ -79,7 +79,8 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               type="checkbox"
               checked={showPassword}
               onChange={(e) => setShowPassword(e.target.checked)}
-              className="w-4 h-4 cursor-pointer accent-white bg-transparent"
+              className="w-4 h-4 cursor-pointer appearance-none border border-gray-500 rounded checked:bg-white checked:border-white"
+              style={{ backgroundColor: 'transparent' }}
             />
             <span className="text-gray-400" style={{ fontSize: '14px' }}>
               {t('auth.showPassword')}
