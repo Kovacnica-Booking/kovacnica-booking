@@ -25,7 +25,7 @@ export function BookingDisplay({ booking, onBookingClick, isMobile = false }: Bo
   const now = new Date();
   const isPastBooking = isBefore(end, now);
   const bookingColor = isPastBooking ? 'hsl(158, 36%, 34%)' : 'hsl(158 48% 51%)';
-  const textColor = isPastBooking ? 'hsl(180, 9%, 49%)' : 'hsl(158 3% 8%)';
+  const textColor = isPastBooking ? 'hsl(180, 91%, 91%)' : 'hsl(158 3% 8%)';
 
   return (
     <div
