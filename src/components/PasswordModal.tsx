@@ -36,7 +36,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
         <LanguagePicker />
       </div>
       <div className="flex flex-col items-center px-4">
-        <Logo />
+        <Logo size={64} />
         <h2
           className="text-3xl text-gray-400 font-semibold mb-3 mt-4"
           dangerouslySetInnerHTML={{ __html: t('auth.title') }}
