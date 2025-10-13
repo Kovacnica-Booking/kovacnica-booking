@@ -28,7 +28,7 @@ export function CurrentTimeLine({ isMobile = false }: CurrentTimeLineProps) {
   return (
     <>
       <div
-        className="absolute left-0 w-4 h-3 rounded-full z-20"
+        className="absolute -inset-px w-4 h-3 rounded-full z-20"
         style={{
           top: `${top}px`,
           backgroundColor: 'hsl(0, 84%, 60%)',
