@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguagePicker } from '@/components/LanguagePicker';
 import { Logo } from '@/components/Logo';
@@ -12,6 +12,18 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
   const { t } = useTranslation();
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (password.length === 4 && password === '1234') {
+      onAuthenticate();
+    } else if (password.length === 4 && password !== '1234') {
+      setError(true);
+      setTimeout(() => {
+        setPassword('');
+        setError(false);
+      }, 1000);
+    }
+  }, [password, onAuthenticate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
