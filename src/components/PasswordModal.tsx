@@ -41,7 +41,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
           className="text-2xl font-semibold mb-3 mt-4"
           dangerouslySetInnerHTML={{ __html: t('auth.title') }}
           style={{
-            '--highlight-color': 'hsl(0, 0%, 10%)'
+            '--highlight-color': 'hsl(0, 0%, 100%)'
           } as React.CSSProperties}
         />
 
