@@ -38,7 +38,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
       <div className="flex flex-col items-center px-4">
         <Logo size={64} />
         <h2
-          className="text-3xl text-gray-400 font-semibold mb-3 mt-5"
+          className="text-4xl text-gray-400 font-semibold mb-3 mt-5"
           dangerouslySetInnerHTML={{ __html: t('auth.title') }}
           style={{
             '--highlight-color': 'hsl(0, 0%, 100%)'
