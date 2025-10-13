@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguagePicker } from '@/components/LanguagePicker';
 import { Logo } from '@/components/Logo';
+import { Check } from 'lucide-react';
 
 
 interface PasswordModalProps {
@@ -75,13 +76,18 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
             style={{ backgroundColor: '#333333' }}
           />
           <label className="flex items-center gap-2 self-start cursor-pointer" style={{ marginTop: '8px' }}>
-            <input
-              type="checkbox"
-              checked={showPassword}
-              onChange={(e) => setShowPassword(e.target.checked)}
-              className="w-4 h-4 cursor-pointer appearance-none border border-gray-500 rounded checked:bg-white checked:border-white"
-              style={{ backgroundColor: 'transparent' }}
-            />
+            <div className="relative">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={(e) => setShowPassword(e.target.checked)}
+                className="w-4 h-4 cursor-pointer appearance-none border border-gray-500 rounded checked:bg-white checked:border-white"
+                style={{ backgroundColor: 'transparent' }}
+              />
+              {showPassword && (
+                <Check className="absolute inset-0 w-4 h-4 text-black pointer-events-none" strokeWidth={3} />
+              )}
+            </div>
             <span className="text-gray-400" style={{ fontSize: '14px' }}>
               {t('auth.showPassword')}
             </span>
