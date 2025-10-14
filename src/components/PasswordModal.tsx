@@ -89,6 +89,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               ref={refs.setReference}
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
+              onClick={() => setShowTooltip(!showTooltip)}
               className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
             >
               <Info className="w-5 h-5 text-gray-400" />
