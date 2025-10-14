@@ -78,7 +78,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               placeholder={t('auth.passwordPlaceholder')}
               autoFocus
               required
-              className={`w-full px-4 py-3 pr-12 text-left text-lg font-medium rounded-lg transition-all outline-none border ${
+              className={`w-full px-4 py-3 pr-12 text-left text-lg font-regular rounded-lg transition-all outline-none border ${
                 error
                   ? 'border-red-500 text-red-400'
                   : 'border-transparent hover:border-gray-500 focus:ring-2 focus:ring-white text-white'
