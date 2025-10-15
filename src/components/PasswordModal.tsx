@@ -78,7 +78,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               placeholder={t('auth.passwordPlaceholder')}
               autoFocus
               required
-              className={`w-full px-4 py-3 pr-12 text-left text-lg font-regular rounded-lg transition-all outline-none border ${
+              className={`w-full px-4 py-3 pr-12 text-left text-lg font-medium rounded-lg transition-all outline-none border ${
                 error
                   ? 'border-red-500 text-red-400'
                   : 'border-transparent hover:border-gray-500 focus:ring-2 focus:ring-white text-white'
@@ -89,7 +89,6 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               ref={refs.setReference}
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
-              onClick={() => setShowTooltip(!showTooltip)}
               className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
             >
               <Info className="w-5 h-5 text-gray-400" />
@@ -104,7 +103,7 @@ export function PasswordModal({ onAuthenticate }: PasswordModalProps) {
               </div>
             )}
           </div>
-          <label className="flex items-center gap-2 self-start cursor-pointer" style={{ marginTop: '12px' }}>
+          <label className="flex items-center gap-2 self-start cursor-pointer" style={{ marginTop: '8px' }}>
             <div className="relative w-4 h-4 self-start">
               <input
                 type="checkbox"
